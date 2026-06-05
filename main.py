@@ -1,7 +1,20 @@
 
 
-def add_transaction():
-    pass
+def add_transaction(transaction):
+        while True:
+
+            income_or_expense = input('please enter whether you are adding an income or expense: ')
+
+            if income_or_expense not in ['income', 'expense']:
+                print("that is an invalid option. Please enter 'income' or 'expense'. ")
+            else:
+                print(f"thank you for your repsonse. I can help you with adding an {income_or_expense} to the transaction list.")
+                break
+        
+
+
+    
+        pass
 
 def view_transactions():
     pass
@@ -12,13 +25,6 @@ def get_summary():
 
 def category_breakdown():
     pass
-
-
-
-
-
-
-
 
 
 
@@ -38,12 +44,12 @@ def main():
 
             user_choice = int(input('please enter a number from the list above to choose which action you would like to take:'))
         except ValueError:
-            print('you need to enter a number')
+            print('you need to enter a number only between 1-5.')
             continue
     
 
         if user_choice == 1:
-            add_transaction()
+            add_transaction(transaction)
         elif user_choice == 2:
             view_transactions()
         elif user_choice == 3:
@@ -53,7 +59,7 @@ def main():
         elif user_choice == 5:
             break
         else:
-            print('thats not a valid choice, please try again')
+            print('thats not a valid choice, please try again with a number between 1-5.')
 
             
 main()
