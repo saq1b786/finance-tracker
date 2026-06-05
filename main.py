@@ -1,20 +1,51 @@
 
+import datetime
 
 def add_transaction(transaction):
-        while True:
+    while True:
 
-            income_or_expense = input('please enter whether you are adding an income or expense: ')
+        income_or_expense = input('please enter whether you are adding an income or expense: ').lower()
 
-            if income_or_expense not in ['income', 'expense']:
-                print("that is an invalid option. Please enter 'income' or 'expense'. ")
-            else:
-                print(f"thank you for your repsonse. I can help you with adding an {income_or_expense} to the transaction list.")
-                break
+        if income_or_expense not in ['income', 'expense']:
+            print("that is an invalid option. Please enter 'income' or 'expense'. ")
+        else:
+            print(f"thank you for your repsonse. I can help you with adding an {income_or_expense} to the transaction list.")
+            break
         
+    while True:
+        try:
+            amount = float(input('please enter the amount: £'))
+        except ValueError:
+            print('you must input a number only greater than 0.')
+            continue
+
+        if amount <= 0:
+            print('the amount must be greater than £0. Please try again')
+        else:
+            break    
+
+    category = input(f"what category is this {income_or_expense} fall under (food, transport, bills, salary, entertainment etc): ").lower()
+
+    description = input('a short description of the transaction: ')
+
+    date = str(datetime.date.today())
+
+    added_transaction = {
+        'type': income_or_expense,
+        'amount': amount, 
+        'category': category,
+        'description': description, 
+        'date': date
+    }
+
+    transaction.append(added_transaction)
+
+    print('the transaction has been added!')
+            
 
 
-    
-        pass
+        
+        
 
 def view_transactions():
     pass
