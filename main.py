@@ -43,10 +43,6 @@ def add_transaction(transaction):
     print('the transaction has been added!')
             
 
-
-        
-        
-
 def view_transactions(transaction):
 
     if not transaction:
@@ -59,9 +55,27 @@ def view_transactions(transaction):
 
     
 
+def get_summary(transaction):
+    total_income = 0
+    total_expenses = 0 
+    net_balance = 0
 
-def get_summary():
-    pass
+    if not transaction:
+        print('There are no transactions in the list yet. sorry.')
+        return
+    
+    for item in transaction:
+        if item['type'] == 'income':
+                total_income = total_income + item['amount']
+        elif item['type'] == 'expense':
+            total_expenses = total_expenses + item['amount']
+            
+
+    net_balance = total_income - total_expenses
+
+    print(f"your total income is: £{total_income:.2f}")
+    print(f"your total expenses is: £{total_expenses:.2f}")
+    print(f"Your net balance is £{net_balance:.2f}")
 
 def category_breakdown():
     pass
@@ -93,7 +107,7 @@ def main():
         elif user_choice == 2:
             view_transactions(transaction)
         elif user_choice == 3:
-            get_summary()
+            get_summary(transaction)
         elif user_choice == 4:
             category_breakdown()
         elif user_choice == 5:
