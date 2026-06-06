@@ -51,6 +51,7 @@ def view_transactions(transaction):
 
     if not transaction:
         print('There are no transactions in the list yet. sorry.')
+        return
     else:
         for item in transaction:
             for key, value in item.items():
