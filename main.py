@@ -47,8 +47,16 @@ def add_transaction(transaction):
         
         
 
-def view_transactions():
-    pass
+def view_transactions(transaction):
+
+    if not transaction:
+        print('There are no transactions in the list yet. sorry.')
+    else:
+        for item in transaction:
+            for key, value in item.items():
+                print(f"{key} : {value}")
+
+    
 
 
 def get_summary():
@@ -82,7 +90,7 @@ def main():
         if user_choice == 1:
             add_transaction(transaction)
         elif user_choice == 2:
-            view_transactions()
+            view_transactions(transaction)
         elif user_choice == 3:
             get_summary()
         elif user_choice == 4:
