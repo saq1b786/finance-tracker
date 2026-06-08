@@ -1,7 +1,9 @@
 
 import datetime
 
-def add_transaction(transaction):
+def add_transaction(transaction: list) -> None:
+    ''' Asks the user for deatils about their specific income or expense. Then is appended to the transaction list. '''
+
     while True:
 
         income_or_expense = input('please enter whether you are adding an income or expense: ').lower()
@@ -43,7 +45,8 @@ def add_transaction(transaction):
     print('the transaction has been added!')
             
 
-def view_transactions(transaction):
+def view_transactions(transaction: list) -> None:
+    ''' Checks if the transaction list is empty. if not then prints out the transiction list for the user to see all existing transactions.'''
 
     if not transaction:
         print('There are no transactions in the list yet. sorry.')
@@ -55,7 +58,8 @@ def view_transactions(transaction):
 
     
 
-def get_summary(transaction):
+def get_summary(transaction: list) -> None:
+    ''' Checks if the transiction list is empty. If not then calculates and prints total income, total expense and net balance for the user to see.'''
     total_income = 0
     total_expenses = 0 
     net_balance = 0
@@ -78,7 +82,8 @@ def get_summary(transaction):
     print(f"Your net balance is £{net_balance:.2f}")
 
 
-def category_breakdown(transaction):
+def category_breakdown(transaction: list) -> None:
+    ''' Checks if the transaction list is empty. If not calculates the expense total by category. if the category does not exist then it adds it to the categories list with the amount spent for the user to see.'''
     categories = {}
     if not transaction:
         print('There are no transactions in the list yet. sorry.')
@@ -92,10 +97,10 @@ def category_breakdown(transaction):
                 categories[item['category']] = item['amount']
     
     for category, amount in categories.items():
-        print(f"{category} : {amount:.2f}")
+        print(f"{category} : £{amount:.2f}")
 
 
-def main():
+def main() -> None:
     choices = 0
     transaction = []
 
