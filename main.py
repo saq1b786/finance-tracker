@@ -77,9 +77,22 @@ def get_summary(transaction):
     print(f"your total expenses is: £{total_expenses:.2f}")
     print(f"Your net balance is £{net_balance:.2f}")
 
-def category_breakdown():
-    pass
 
+def category_breakdown(transaction):
+    categories = {}
+    if not transaction:
+        print('There are no transactions in the list yet. sorry.')
+        return
+    
+    for item in transaction:
+        if item['type'] == 'expense':
+            if item['category'] in categories:
+                categories[item['category']] += item['amount']
+            else:
+                categories[item['category']] = item['amount']
+    
+    for category, amount in categories.items():
+        print(f"{category} : {amount:.2f}")
 
 
 def main():
@@ -109,7 +122,7 @@ def main():
         elif user_choice == 3:
             get_summary(transaction)
         elif user_choice == 4:
-            category_breakdown()
+            category_breakdown(transaction)
         elif user_choice == 5:
             break
         else:
