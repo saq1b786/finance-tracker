@@ -46,15 +46,16 @@ def add_transaction(transaction: list) -> None:
             
 
 def view_transactions(transaction: list) -> None:
-    ''' Checks if the transaction list is empty. if not then prints out the transiction list for the user to see all existing transactions.'''
+    '''Checks if the transaction list is empty. if not then prints out the transiction list for the user to see all existing transactions.'''
 
     if not transaction:
         print('There are no transactions in the list yet. sorry.')
         return
     else:
+        print(f"{'Date':<12} {'Type':<10} {'Category':<15} {'Amount':>10} {'Description':<20}")
+        print("-" * 70)
         for item in transaction:
-            for key, value in item.items():
-                print(f"{key} : {value}")
+            print(f"{item['date']:<12} {item['type']:<10} {item['category']:<15} £{item['amount']:>9.2f} {item['description']:<20}")
 
     
 
