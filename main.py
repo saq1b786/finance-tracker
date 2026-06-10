@@ -1,5 +1,6 @@
-
+from pathlib import Path
 import datetime
+import json 
 
 def add_transaction(transaction: list) -> None:
     ''' Asks the user for deatils about their specific income or expense. Then is appended to the transaction list. '''
@@ -41,6 +42,7 @@ def add_transaction(transaction: list) -> None:
     }
 
     transaction.append(added_transaction)
+    save_transactions(transaction)
 
     print('the transaction has been added!')
             
@@ -100,10 +102,29 @@ def category_breakdown(transaction: list) -> None:
     for category, amount in categories.items():
         print(f"{category} : £{amount:.2f}")
 
+def save_transactions(transaction: list) -> str:
+    ''' Saves the transactions to a JSON file.'''
+
+    with open('data.json' ,'w') as file:
+        json.dump(transaction, file, indent=4)
+    
+    return 'transactions have been saved!'
+
+def load_transactions() -> list:
+    if Path('data.json').exists():
+        with open('data.json' ,'r') as file:
+            loaded_data = json.load(file)
+            return loaded_data
+    return []
+   
+
+
+
 
 def main() -> None:
+    
     choices = 0
-    transaction = []
+    transaction = load_transactions()
 
     while choices == 0:
         
